@@ -52,13 +52,15 @@ const socailMedia = [
     colour: "#E4405F",
   },
 ];
+const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
+
 
 // Fixed generateStaticParams function that fetches all blog IDs
 export async function generateStaticParams() {
   try {
     // Fetch all blogs to get their IDs
     const res = await fetch(
-      "https://api.www.exthgen.com/api/blogs/?populate=*",
+      `${baseUrl}/api/blogs/?populate=*`,
       {
         next: { revalidate: 3600 },
       }
@@ -86,7 +88,7 @@ export const revalidate = 3600;
 async function getBlogDetail(id?: string): Promise<Blog | null> {
   try {
     const res = await fetch(
-      `https://api.www.exthgen.com/api/blogs/?populate=*`,
+      `${baseUrl}/api/blogs/?populate=*`,
       {
         next: { revalidate: 3600 },
       }
@@ -170,7 +172,7 @@ export default async function BlogDetail({
         </div>
         <div className="max-w-7xl">
           <Image
-            src={`https://api.www.exthgen.com${blog?.blogCoverImage?.url}`}
+            src={`${baseUrl}${blog?.blogCoverImage?.url}`}
             alt={blog?.blogTitle}
             width={800}
             height={500}

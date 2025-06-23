@@ -122,10 +122,12 @@ interface TeamMember {
 
 // Add revalidation configuration
 export const revalidate = 3600; // Revalidate every hour
+const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
+
 
 async function getTeamMembers(): Promise<TeamMember[]> {
   try {
-    const res = await fetch("https://api.www.exthgen.com/api/members/?populate=*", {
+    const res = await fetch(`${baseUrl}/api/members/?populate=*`, {
       next: { revalidate: 3600 }, // Better way to handle caching
     });
 
@@ -167,7 +169,7 @@ export default async function TeamPage() {
                       <Image
                         className="w-96 h-72 rounded-[32px] object-cover"
                         src={
-                          `https://api.www.exthgen.com${member.memberImage.url}` ||
+                          `${baseUrl}${member.memberImage.url}` ||
                           `./Team/default-profile.png`
                         }
                         alt={member.memberName}

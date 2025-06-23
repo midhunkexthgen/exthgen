@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Vision = () => {
+
   return (
     <div className="flex flex-col bg-[#E8ECEE] w-full relative overflow-hidden">
       {/* Background Video with Red Overlay */}

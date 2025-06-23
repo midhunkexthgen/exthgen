@@ -6,6 +6,7 @@ import WhyWe from "../AppComponents/WhyWe";
 
 
 function About() {
+
   return (
     <div className="flex flex-col">
       <Vision />
