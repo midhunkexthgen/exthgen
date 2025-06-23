@@ -3,6 +3,7 @@ interface StaticParamsConfig {
   idField?: string;
   queryParams?: string;
 }
+const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
 
 export async function generateEntityStaticParams({
   endpoint,
@@ -11,7 +12,7 @@ export async function generateEntityStaticParams({
 }: StaticParamsConfig) {
   try {
     const res = await fetch(
-      `https://api.www.exthgen.com/api/${endpoint}${queryParams}`
+      `${baseUrl}/api/${endpoint}${queryParams}`
     );
     const data = await res.json();
     const items = data?.data || [];

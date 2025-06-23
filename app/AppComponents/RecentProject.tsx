@@ -116,6 +116,8 @@ interface Project {
 }
 
 const RecentProjectPage = () => {
+  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
+  console.log(baseUrl,"baseUrl");
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -125,7 +127,7 @@ const RecentProjectPage = () => {
       try {
         setIsLoading(true);
         const res = await fetch(
-          "https://api.www.exthgen.com/api/portfolios/?populate=*",
+          `${baseUrl}/api/portfolios/?populate=*`,
           {
             cache: "no-store",
           }
@@ -192,7 +194,7 @@ const RecentProjectPage = () => {
                         className={`rounded-[32px] object-cover w-full aspect-square md:aspect-video`}
                         src={
                           project.portfolioCoverImage
-                            ? `https://api.www.exthgen.com${project.portfolioCoverImage.url}`
+                            ? `${baseUrl}${project.portfolioCoverImage.url}`
                             : "/placeholder.jpg"
                         }
                         alt={project.portfolioCoverImage.name}

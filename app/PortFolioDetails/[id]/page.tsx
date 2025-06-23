@@ -20,13 +20,15 @@ interface Portfolio {
   impact: string;
   url: string;
 }
+const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
+
 
 // Fixed generateStaticParams function that fetches all portfolio IDs
 export async function generateStaticParams() {
   try {
     // Fetch all portfolios to get their IDs
     const res = await fetch(
-      "https://api.www.exthgen.com/api/portfolios/?populate=*",
+      `${baseUrl}/api/portfolios/?populate=*`,
       {
         next: { revalidate: 0 },
       }
@@ -53,7 +55,7 @@ export const revalidate = 3600;
 async function getPortfolioDetail(id?: string): Promise<Portfolio | null> {
   try {
     const res = await fetch(
-      `https://api.www.exthgen.com/api/portfolios/?populate=*`,
+      `${baseUrl}/api/portfolios/?populate=*`,
       {
         next: { revalidate: 3600 },
       }
@@ -74,7 +76,7 @@ async function getPortfolioDetail(id?: string): Promise<Portfolio | null> {
 async function getRelatedProjects() {
   try {
     const res = await fetch(
-      "https://api.www.exthgen.com/api/portfolios/?populate=*",
+      `${baseUrl}/api/portfolios/?populate=*`,
       {
         next: { revalidate: 3600 },
       }

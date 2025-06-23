@@ -17,11 +17,13 @@ interface Blog {
 
 // Add revalidation configuration
 export const revalidate = 3600; // Revalidate every hour
+const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
+
 
 async function getBlogs(): Promise<Blog[]> {
   try {
     const res = await fetch(
-      "https://api.www.exthgen.com/api/blogs/?populate=*",
+      `${baseUrl}/api/blogs/?populate=*`,
       {
         next: { revalidate: 3600 }, // Better way to handle caching
       }

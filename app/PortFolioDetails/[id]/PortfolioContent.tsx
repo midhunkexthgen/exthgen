@@ -44,6 +44,9 @@ const PortfolioContent: React.FC<PortfolioContentProps> = ({
   currentPortfolio,
 }) => {
   const isMobile = useResponsive();
+  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
+
+
 
   // Format the date
   const formattedDate = new Date(currentPortfolio.createdAt).toLocaleDateString(
@@ -174,7 +177,7 @@ const PortfolioContent: React.FC<PortfolioContentProps> = ({
           }`}
         >
           <Image
-            src={`https://api.www.exthgen.com${currentPortfolio.portfolioCoverImage.url}`}
+            src={`${baseUrl}${currentPortfolio.portfolioCoverImage.url}`}
             alt={currentPortfolio.portfolioCoverImage.name}
             className={`rounded-[32px] object-cover ${
               isMobile ? "w-full aspect-square" : "w-full"
@@ -239,7 +242,7 @@ const PortfolioContent: React.FC<PortfolioContentProps> = ({
           }`}
         >
           <Image
-            src={`https://api.www.exthgen.com${currentPortfolio.portfolioImages[0].url}`}
+            src={`${baseUrl}${currentPortfolio.portfolioImages[0].url}`}
             alt={currentPortfolio.portfolioImages[0].name}
             className={`rounded-[32px] object-cover ${
               isMobile ? "w-full aspect-square" : "w-full"
@@ -266,7 +269,7 @@ const PortfolioContent: React.FC<PortfolioContentProps> = ({
             }`}
           >
               <Image
-                src={`https://api.www.exthgen.com${image.url}`}
+                src={`${baseUrl}${image.url}`}
                 alt={image.name}
                 className={`rounded-[32px] object-cover ${
                   isMobile ? "w-full aspect-square" : "w-full"

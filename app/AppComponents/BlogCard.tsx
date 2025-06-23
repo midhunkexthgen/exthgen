@@ -14,12 +14,13 @@ interface BlogCardProps {
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
+  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
   const router = useRouter();
 
   return (
     <div className="w-full flex justify-between items-center gap-12 sm:gap-12 md:gap-18 lg:gap-24 xl:gap-32 flex-col md:flex-row lg:flex-row">
       <Image
-        src={`https://api.www.exthgen.com${blog.blogCoverImage.url}`}
+        src={`${baseUrl}${blog.blogCoverImage.url}`}
         alt={blog.blogTitle}
         width={500}
         height={300}
